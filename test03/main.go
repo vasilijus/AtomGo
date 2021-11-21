@@ -13,9 +13,20 @@ type User struct {
 }
 // port := ":8080"
 
-func home_page(page http.ResponseWriter, r *http.Request) {
-  fmt.Fprintf(page, "Go is easssy")
+func (u User) getAllInfo() string {
+  return fmt.Sprintf("User name is: %s. He is %d", u.name, u.age)
 }
+func (u *User) setNewName(newName string) {
+    u.name = newName
+}
+
+func home_page(page http.ResponseWriter, r *http.Request) {
+  serg := User{"Serg", 30, -30, 4.1, 0.4}
+  serg.setNewName("Serg2")
+  // serg.age = 33
+  fmt.Fprintf(page, serg.getAllInfo())
+}
+
 func about_page(w http.ResponseWriter, r *http.Request) {
   fmt.Fprintf(w, "about us")
 }
@@ -28,5 +39,8 @@ func handleRequest() {
 }
 
 func main() {
+  // var bob User = .....
+  // bob := User{name: "Serg", age: 30, money: -30, avg_grade: 4.1, happiness: 0.4}
+
   handleRequest()
 }
