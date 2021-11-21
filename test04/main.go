@@ -13,6 +13,7 @@ type User struct {
 func home_page(page http.ResponseWriter, r *http.Request) {
   fmt.Fprintf(page, "index")
   tmpl, _ := template.ParseFiles("templates/home.html")
+  tmpl.Execute(page, "object ")
 }
 
 func about_page(w http.ResponseWriter, r *http.Request) {
