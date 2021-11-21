@@ -1,6 +1,8 @@
 # Install
+Required plugins for atom
 go ide
 plarformio terminal
+emmet
 
 in terminal run
 ```
