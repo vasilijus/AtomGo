@@ -1,10 +1,7 @@
 package main
 
-import (
-  "fmt"
-  "net/http"
-)
-// type User interface {}
+import ("fmt"; "net/http"; "html/template")
+
 type User struct {
   name string
   age uint16 // an integer which cannot be (-)
@@ -15,13 +12,15 @@ type User struct {
 
 func home_page(page http.ResponseWriter, r *http.Request) {
   fmt.Fprintf(page, "index")
+  tmpl, _ := template.ParseFiles("templates/home.html")
 }
 
 func about_page(w http.ResponseWriter, r *http.Request) {
-  fmt.Fprintf(w, `
-    <h1>Hello</h1>
-    <p>desc</p>
-  `)
+  // fmt.Fprintf(w, `
+  //   <h1>Hello</h1>
+  //   <p>desc</p>
+  // `)
+  tmpl, _ := template.ParseFiles("templates/about_page.html") // unnecessary 2nd parmeter
 }
 
 func handleRequest() {
