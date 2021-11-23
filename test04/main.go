@@ -3,18 +3,18 @@ package main
 import ("fmt"; "net/http"; "html/template")
 
 type User struct {
-  name string
-  age uint16 // an integer which cannot be (-)
-  money int16
-  avg_grades, happyness float64
+  Name string
+  Age uint16 // an integer which cannot be (-)
+  Money int16
+  Avg_grades, Happyness float64
 }
 // port := ":8080"
 
 func home_page(page http.ResponseWriter, r *http.Request) {
   // fmt.Fprintf(page, "index")
-  serg := User{"Sergio", 30, 100, 3.5, 0.9}
+  sergi := User{"Sergio", 30, 100, 3.5, 0.9}
   tmpl, _ := template.ParseFiles("templates/home_page.html")
-  tmpl.Execute(page, "serg")
+  tmpl.Execute(page, sergi)
 }
 
 func about_page(w http.ResponseWriter, r *http.Request) {
