@@ -1,8 +1,8 @@
 package main
 
-import ( 
+import (
   "fmt"
-  "database/sql" 
+  "database/sql"
 
   _ "github.com/go-sql-driver/mysql"
 )
@@ -15,8 +15,8 @@ type User struct {
 func main() {
   fmt.Println("Working with MySQL")
 
-  db, err := sql.Open("mysql", "test:password@/test_go_db") 
-  // dbType / login, pass, host, port, database 
+  db, err := sql.Open("mysql", "test:password@/test_go_db")
+  // dbType / login, pass, host, port, database
   if err != nil {
     panic(err)
   }
@@ -28,9 +28,23 @@ func main() {
   // if err != nil {
   //   panic(err)
   // }
-  // defer insert.Close()   
+  // defer insert.Close()
 
   // Select data from db
+  res, err := db.Query("SELECT `name`, `age` FROM `users`")
+  if err != nil {
+    panic(err)
+  }
+
+  for res.Next() {
+    var user User
+    err = res.Scan(&user.Name, &user.Age)
+    if err != nil {
+      panic(err)
+    }
+
+    fmt.Println(fmt.Sprintf("User: %s with age: %d", user.Name, user.Age))
+  }
 
 
   fmt.Println("Connected to MySQL")
