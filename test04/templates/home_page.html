@@ -5,33 +5,77 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/examples/cover/cover.css">
 </head>
-<body>
-    Home
-    <p>
-         <!-- Object must be passed with (.) and the first letter must be capital -->
-        User: {{ .Name }} 
-        {{ if eq .Name "Sergio" }}
-        <p>Hello world Serg</p>
-        {{ else }}
-        <p>Greetings</p>
-        {{ end }}
 
-        <!-- ne - notEqual/ gt/lt -->
-        Age:
-        {{ if lt .Age 35 }}
-            <p>Still young</p>
-        {{ end }}
-        <hr>
+<body class="text-center">
 
-        <!-- each element will output with (.) -->
-        <ul>
-            {{ range .Hobbies }}
-                <li>{{ . }}</li>
-            {{ else }}
-                <p>Empty List</p>
-            {{ end }}
-        </ul>
-    </p>
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand">Cover</h3>
+          <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" href="/">Home</a>
+            <a class="nav-link" href="/about/">About</a>
+            <a class="nav-link" href="/">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">Cover your page.</h1>
+        <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+        <p class="lead">
+          <a href="#" class="btn btn-lg btn-secondary">Learn more</a>
+        </p>
+
+        <p>
+            <!-- Object must be passed with (.) and the first letter must be capital -->
+           User: {{ .Name }} 
+           {{ if eq .Name "Sergio" }}
+           <p class="lead">Hello world Serg</p>
+           {{ else }}
+           <p class="lead">Greetings</p>
+           {{ end }}
+   
+           <!-- ne - notEqual/ gt/lt -->
+           Age:
+           {{ if lt .Age 35 }}
+               <p class="lead">Still young</p>
+           {{ end }}
+           <hr>
+   
+           <!-- each element will output with (.) -->
+           <ul>
+               {{ range .Hobbies }}
+                   <p class="lead">{{ . }}</p>
+               {{ else }}
+                   <p class="lead">Empty List</p>
+               {{ end }}
+           </ul>
+       </p>
+
+
+      </main>
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+        </div>
+      </footer>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+  
+
 </body>
+
 </html>
