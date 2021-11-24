@@ -9,9 +9,19 @@
 <body>
     Home
     <p>
-        // Object must be passed with (.) and the first letter must be capital
+         <!-- Object must be passed with (.) and the first letter must be capital -->
         User: {{ .Name }} 
-        
+        {{ if eq .Name "Sergio" }}
+        <p>Hello world Serg</p>
+        {{ else }}
+        <p>Greetings</p>
+        {{ end }}
+
+        <!-- ne - notEqual/ gt/lt -->
+        Age:
+        {{ if lt .Age 35 }}
+            <p>Still young</p>
+        {{ end }}
     </p>
 </body>
 </html>
