@@ -1,12 +1,13 @@
 package main
 
-import ("fmt"; "net/http"; "html/template")
+import  ( "fmt"; "net/http"; "html/template")
 
 type User struct {
   Name string
   Age uint16 // an integer which cannot be (-)
   Money int16
   Avg_grades, Happyness float64
+  Hobbies []string
 }
 // port := ":8080"
 
@@ -22,7 +23,7 @@ func about_page(w http.ResponseWriter, r *http.Request) {
   //   <h1>Hello</h1>
   //   <p>desc</p>
   // `)
-  serg := User{"Sergio", 30, 100, 3.5, 0.9}
+  serg := User{"Sergio", 30, 100, 3.5, 0.9, Hobbies: []string {"Reading", "Skate", "Games"} }
   tmpl, _ := template.ParseFiles("templates/about_page.html") // unnecessary 2nd parmeter
   tmpl.Execute(w, serg);
 }
