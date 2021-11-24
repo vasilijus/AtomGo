@@ -22,6 +22,16 @@
         {{ if lt .Age 35 }}
             <p>Still young</p>
         {{ end }}
+        <hr>
+
+        <!-- each element will output with (.) -->
+        <ul>
+            {{ range .Hobbies }}
+                <li>{{ . }}</li>
+            {{ else }}
+                <p>Empty List</p>
+            {{ end }}
+        </ul>
     </p>
 </body>
 </html>
