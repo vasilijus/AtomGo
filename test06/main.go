@@ -17,6 +17,8 @@ func index(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleFunc() {
+  // allow first to add static files ( css/js/images)
+  http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static/") ) ) )
   http.HandleFunc("/", index)
   http.ListenAndServe(":8080", nil)
 }
