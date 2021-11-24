@@ -13,7 +13,7 @@ type User struct {
 
 func home_page(page http.ResponseWriter, r *http.Request) {
   // fmt.Fprintf(page, "index")
-  sergi := User{"Sergio", 30, 100, 3.5, 0.9}
+  sergi := User{"Sergio", 30, 100, 3.5, 0.9, []string {"Reading", "Skate", "Games"} }
   tmpl, _ := template.ParseFiles("templates/home_page.html")
   tmpl.Execute(page, sergi)
 }
@@ -23,7 +23,7 @@ func about_page(w http.ResponseWriter, r *http.Request) {
   //   <h1>Hello</h1>
   //   <p>desc</p>
   // `)
-  serg := User{"Sergio", 30, 100, 3.5, 0.9, Hobbies: []string {"Reading", "Skate", "Games"} }
+  serg := User{"Sergio", 30, 100, 3.5, 0.9, []string {"Reading", "Skate", "Games"} }
   tmpl, _ := template.ParseFiles("templates/about_page.html") // unnecessary 2nd parmeter
   tmpl.Execute(w, serg);
 }
