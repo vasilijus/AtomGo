@@ -4,6 +4,9 @@ import (
   "fmt"
   "net/http"
   "html/template"
+
+  "database/sql"
+  _ "github.com/go-sql-driver/mysql"
 )
 
 // Create form template
@@ -27,9 +30,31 @@ func create(w http.ResponseWriter, r *http.Request) {
 
   temp.ExecuteTemplate(w, "create", nil) // page / index / parameters
 }
-func save_article(w http.ResponseWriter, *r Request) {
+
+func save_article(w http.ResponseWriter, r *http.Request) {
   title := r.FormValue("title")
-  
+  description := r.FormValue("description")
+  paragraph := r.FormValue("paragraph")
+
+  // Open DB Connection
+  db, err := sql.Open("mysql", "test:password@/test_go_db")
+  // dbType / login, pass, host, port, database
+  if err != nil {
+    panic(err)
+  }
+  defer db.Close()
+
+  // insert Article
+  insert, err := db.Query(
+    fmt.Sprintf("INSERT INTO `articles` (`title`, `description`,`text`) VALUES('%s', '%s', '%s')", title ,description ,paragraph) 
+  )
+  if err != nil {
+    panic(err)
+  }
+  defer insert.Close()
+
+  http.Redirect(w, r, "/", http.StatusOther) // page/ method(r -redirect)/location/status call(301)
+
 }
 
 func handleFunc() {
