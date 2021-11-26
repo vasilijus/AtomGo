@@ -10,3 +10,8 @@ CREATE TABLE `test_go_db`.`articles` (
      `text` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , 
      PRIMARY KEY (`id`)) ENGINE = MyIsam;
 ```
+
+Connect to DB:
+```go
+sql.Open("mysql", "root:root@tco(127.0.0.1:8889)/golang")
+```
