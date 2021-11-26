@@ -34,7 +34,7 @@ func create(w http.ResponseWriter, r *http.Request) {
 func save_article(w http.ResponseWriter, r *http.Request) {
   title := r.FormValue("title")
   description := r.FormValue("description")
-  paragraph := r.FormValue("paragraph")
+  text := r.FormValue("text")
 
   // Open DB Connection
   db, err := sql.Open("mysql", "test:password@/test_go_db")
@@ -45,15 +45,13 @@ func save_article(w http.ResponseWriter, r *http.Request) {
   defer db.Close()
 
   // insert Article
-  insert, err := db.Query(
-    fmt.Sprintf("INSERT INTO `articles` (`title`, `description`,`text`) VALUES('%s', '%s', '%s')", title ,description ,paragraph) 
-  )
+  insert, err := db.Query( fmt.Sprintf("INSERT INTO `articles` (`title`, `description`,`text`) VALUES('%s', '%s', '%s')", title ,description ,text) )
   if err != nil {
     panic(err)
   }
   defer insert.Close()
 
-  http.Redirect(w, r, "/", http.StatusOther) // page/ method(r -redirect)/location/status call(301)
+  http.Redirect(w, r, "/", http.StatusSeeOther) // page/ method(r -redirect)/location/status call(301)
 
 }
 
