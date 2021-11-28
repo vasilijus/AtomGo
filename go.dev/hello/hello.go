@@ -7,6 +7,12 @@ import (
 )
 
 func main() {
-	message := greetings.Hello("Sergio")
-	fmt.Println(message)
+	message, errors := greetings.Hello("Sergio")
+	// message, errors := greetings.Hello("")
+	if errors == nil {
+		fmt.Println(message)
+	} else {
+		fmt.Println(errors)
+	}
+
 }
